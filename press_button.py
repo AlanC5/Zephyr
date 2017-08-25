@@ -10,8 +10,6 @@ GPIO.setmode(GPIO.BCM)
 PULL_UP = 23
 PULL_DOWN = 24
 
-GPIO.cleanup()
-
 GPIO.setup(PULL_UP, GPIO.IN, pull_up_down = GPIO.PUD_DOWN)
 GPIO.setup(PULL_DOWN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
 
@@ -45,3 +43,4 @@ while True:
 
 # Remove listener from pin
 GPIO.remove_event_detect(PULL_UP)
+GPIO.cleanup()
