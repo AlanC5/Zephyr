@@ -17,17 +17,17 @@ class TemperatureHumiditySensor:
         self.DHT_TYPE = DHT_TYPE
         self.humidity = 0
         self.temperature = 0
-        self.units = 'celsisu'
+        self.units = 'Celsisu'
 
     # Try to grab a sensor reading.  Use the read_retry method which will retry up
     # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
     def read_inputs(self):
         self.humidity, self.temperature = Adafruit_DHT.read_retry(self.DHT_TYPE, self.INPUT_PIN)
 
-    # units to determine temperature units (celsius, fahrenheit)
-    def print_output(self, units='celsius'):
+    # units to determine temperature units (Celsius, Fahrenheit)
+    def print_output(self, units='Celsius'):
         if self.humidity is not None and self.temperature is not None:
-            if units == 'fahrenheit':
+            if units == 'Fahrenheit':
                 self.temperature = self.temperature * 9/5.0 + 32
                 self.units = units
 
