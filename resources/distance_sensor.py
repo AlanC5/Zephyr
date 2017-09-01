@@ -1,22 +1,26 @@
+'''Contains all distance sensors'''
+#!/usr/bin/python3
 # Note RPi.GPIO only works on Raspberry Pi and is currently unavailable on other environments
-import RPi.GPIO as GPIO
 import time
+import RPi.GPIO as GPIO
 
 class DistanceSensor:
+    '''HC-SR04 distance sensor'''
     def __init__(self, TRIG, ECHO):
         self.TRIG = TRIG
         self.ECHO = ECHO
         self.distance = 0
         self.setup()
 
-    def setup():
-        print "Distance Measurement In Progress"
+    def setup(self):
+        '''Turns the sensor on '''
+        print('Distance Measurement In Progress')
         GPIO.setup(self.TRIG, GPIO.OUT)
         GPIO.setup(self.ECHO, GPIO.IN)
 
         # Let the sensor settle first
         GPIO.output(self.TRIG, False)
-        print "Waiting For Sensor To Settle"
+        print('Waiting For Sensor To Settle')
         time.sleep(2)
 
         # HC-SR04 sensor requires a short 10uS pulse to start the ranging program
@@ -24,7 +28,8 @@ class DistanceSensor:
         time.sleep(0.00001)
         GPIO.output(self.TRIG, False)
 
-    def measure_distance():
+    def measure_distance(self):
+        '''Begin measuring the actual distance'''
         # Calculates distances by measuring time differences
         while GPIO.input(self.ECHO) == 0:
             # Records the final time the signal is low
@@ -45,7 +50,7 @@ class DistanceSensor:
         self.distance = 17150 * pulse_duration
         self.distance = round(self.distance, 2)
 
-        print "Distance: ", distance,"cm"
+        print('Distance: ', self.distance, 'cm')
 
 
 

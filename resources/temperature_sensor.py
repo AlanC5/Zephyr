@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # 1 We need the Adafruit DHT11 Library
 # git clone https://github.com/adafruit/Adafruit_Python_DHT.git
 # 2 Change directory
@@ -7,7 +8,6 @@
 # sudo python setup.py install
 
 # Reading the data into Terminal
-#!/usr/bin/python
 import sys
 import Adafruit_DHT
 
@@ -33,7 +33,7 @@ class TemperatureHumiditySensor:
 
             print 'Temp: {0:0.1f} {1} Humditiy: {2:0.1f} %'.format(self.temperature, units self.humidity)
         else:
-            print 'Failed to get reading. Try again!'
+            print('Failed to get reading. Try again!')
 
 
 
