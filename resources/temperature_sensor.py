@@ -1,3 +1,4 @@
+'''Contains all Temperature and Humditiy Sensors'''
 #!/usr/bin/python3
 # 1 We need the Adafruit DHT11 Library
 # git clone https://github.com/adafruit/Adafruit_Python_DHT.git
@@ -8,10 +9,10 @@
 # sudo python setup.py install
 
 # Reading the data into Terminal
-import sys
 import Adafruit_DHT
 
 class TemperatureHumiditySensor:
+    '''Adafruit_DHT sensor'''
     def __init__(self, INPUT_PIN, DHT_TYPE):
         self.INPUT_PIN = INPUT_PIN
         self.DHT_TYPE = DHT_TYPE
@@ -19,19 +20,19 @@ class TemperatureHumiditySensor:
         self.temperature = 0
         self.units = 'Celsisu'
 
-    # Try to grab a sensor reading.  Use the read_retry method which will retry up
-    # to 15 times to get a sensor reading (waiting 2 seconds between each retry).
     def read_inputs(self):
+        '''Try to grab a sensor reading.  Use the read_retry method which will retry up
+        to 15 times to get a sensor reading (waiting 2 seconds between each retry)'''
         self.humidity, self.temperature = Adafruit_DHT.read_retry(self.DHT_TYPE, self.INPUT_PIN)
 
-    # units to determine temperature units (Celsius, Fahrenheit)
     def print_output(self, units='Celsius'):
+        '''Units to determine temperature units (Celsisu, Fahrenheit)'''
         if self.humidity is not None and self.temperature is not None:
             if units == 'Fahrenheit':
                 self.temperature = self.temperature * 9/5.0 + 32
                 self.units = units
 
-            print 'Temp: {0:0.1f} {1} Humditiy: {2:0.1f} %'.format(self.temperature, units self.humidity)
+            print('Temp: {0:0.1f} {1} Humditiy: {2:0.1f} %'.format(self.temperature, self.units, self.humidity))
         else:
             print('Failed to get reading. Try again!')
 
