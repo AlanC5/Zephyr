@@ -3,32 +3,34 @@
 import RPi.GPIO as GPIO
 # import time
 import Adafruit_DHT
+from devices.FAN import Fan
 from resources.DISTANCE_SENSOR import DistanceSensor
 from resources.TEMPERATURE_SENSOR import TemperatureHumiditySensor
-
-# Distance Sensor
-# TRIG is the output PIN, triggers the sensor
-# ECHO is the input PIN, reads the signal
-TRIG = 23
-ECHO = 24
-
-# Temperature Humidity Sensor
-INPUT_PIN = 4
-DHT_TYPE = Adafruit_DHT.DHT11
 
 # Set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-FAN_OUTPUT_PIN = 18
-GPIO.setup(FAN_OUTPUT_PIN, GPIO.OUT)
-# Initially turn off fan
-GPIO.output(FAN_OUTPUT_PIN, GPIO.LOW)
+
+# Fan
+# OUTPIN PIN for fan
+FAN_OUTPUT = 18
+
+# Distance Sensor
+# TRIG is the output PIN, triggers the sensor
+# ECHO is the input PIN, reads the signal
+D_TRIG = 23
+D_ECHO = 24
+
+# Temperature Humidity Sensor
+TH_INPUT_PIN = 4
+TH_DHT_TYPE = Adafruit_DHT.DHT11
+
+# Set up fan
+FAN = Fan(FAN_OUTPUT)
 
 # Set up sensors
-DISTANCE_SENSOR = DistanceSensor(TRIG, ECHO)
-TEMPERATURE_SENSOR = TemperatureHumiditySensor(INPUT_PIN, DHT_TYPE)
-
-# TODO: Create a fan_state and after turning it on, check if conditions to turn the fan off
+DISTANCE_SENSOR = DistanceSensor(D_TRIG, D_ECHO)
+TEMPERATURE_SENSOR = TemperatureHumiditySensor(TH_INPUT_PIN, TH_DHT_TYPE)
 
 while True:
     DISTANCE_SENSOR.measure_distance()
@@ -39,8 +41,8 @@ while True:
 
     # Turn on fan under these conditions
     if DISTANCE is not None and DISTANCE < 100 and TEMPERATURE is not None and TEMPERATURE > 20:
-        GPIO.output(FAN_OUTPUT_PIN, GPIO.HIGH)
+        FAN.turn_on()
     else:
-        GPIO.output(FAN_OUTPUT_PIN, GPIO.LOW)
+        FAN.turn_off()
 
 GPIO.cleanup()
