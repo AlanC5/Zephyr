@@ -1,16 +1,21 @@
 '''Contains all distance sensors'''
 #!/usr/bin/python3
-# Note RPi.GPIO only works on Raspberry Pi and is currently unavailable on other environments
 import time
 import RPi.GPIO as GPIO
 
 class DistanceSensor:
     '''HC-SR04 distance sensor'''
     def __init__(self, TRIG, ECHO):
+        '''TRIG is the output PIN, triggers the sensor
+        ECHO is the input PIN, reads the signal'''
         self.TRIG = TRIG
         self.ECHO = ECHO
-        self.distance = 0
+        self.distance = None
         self.setup()
+
+    def get_distance(self):
+        '''Getter for distance'''
+        return self.distance
 
     def setup(self):
         '''Turns the sensor on '''
@@ -54,6 +59,9 @@ class DistanceSensor:
 
 
 
+# Note RPi.GPIO only works on Raspberry Pi and is currently unavailable on other environments
+# import time
+# import RPi.GPIO as GPIO
 # GPIO.setmode(GPIO.BCM)
 #
 # # TRIG is the output PIN, triggers the sensor
