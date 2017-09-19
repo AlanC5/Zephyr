@@ -8,6 +8,9 @@ Smart Fan Prototype in Python3
 - sudo apt-get install build-essential python-dev
 - sudo python3 setup.py install
 
+## Run
+- virtual venv
+
 ## pylint
 pip install pylint
 pylint {filename/directory}
