@@ -10,6 +10,8 @@ Smart Fan Prototype in Python3
 
 ## Run
 - virtualenv venv
+- source venv/bin/activate
+- pip3 install -r requirements.txt
 
 ## pylint
 pip install pylint
