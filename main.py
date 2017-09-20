@@ -2,10 +2,10 @@
 #!/usr/bin/python3
 import RPi.GPIO as GPIO
 # import time
-import Adafruit_DHT
-from devices.FAN import Fan
-from resources.DISTANCE_SENSOR import DistanceSensor
-from resources.TEMPERATURE_SENSOR import TemperatureHumiditySensor
+from Adafruit_Python_DHT import Adafruit_DHT
+from devices.fan import Fan
+from resources.distance_sensor import DistanceSensor
+from resources.temperature_sensor import TemperatureHumiditySensor
 
 # Set up GPIO using BCM numbering
 GPIO.setmode(GPIO.BCM)
