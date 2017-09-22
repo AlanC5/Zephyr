@@ -9,7 +9,7 @@
 # sudo python setup.py install
 
 # Reading the data into Terminal
-import Adafruit_DHT
+from Adafruit_Python_DHT import Adafruit_DHT
 
 class TemperatureHumiditySensor:
     '''Adafruit_DHT sensor'''
