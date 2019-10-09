@@ -9,12 +9,13 @@ Smart Fan Prototype in Python3
 - sudo python3 setup.py install
 
 ## Run
-- virtualenv venv
-- source venv/bin/activate
-- pip3 install -r requirements.txt
-- python3 main.py
+- `virtualenv venv`
+- `source venv/bin/activate`
+- `pip3 install -r requirements.txt`
+- `python3 main.py`
 
 ## pylint
-pip install pylint
-pylint {filename/directory}
+`pip install pylint`
+
+`pylint {filename/directory}`
 
